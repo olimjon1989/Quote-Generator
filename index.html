@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 1.5rem;
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+        }
+    </style>
+    
+    <script>
+
+        const quoteBank = [
+            {
+                quote: "Education opens up the mind, expands it and allows you to improve your life in so many ways.",
+                author: "John X"
+            }, {
+                quote: "I hope you'll find them helpful no matter if you're a student that needs a boost of motivation or if you're a teacher of any kind that wants to inspire and make a change in the lives of your students.",
+                author: "Adam" 
+            }, {
+                quote: "A man's mind, stretched by new ideas, may never return to its original dimensions.",
+                author: "Oscar"
+            }
+        ];
+
+        window.onload = init;
+        function init() {
+            generateQuote()
+            
+        }
+
+        function generateQuote() {
+            let quoteSize = quoteBank.length;
+            let randomIndex = Math.floor(Math.random() * quoteSize);
+            let randomQuoteData = quoteBank[randomIndex];
+            
+            let twitterLink = "https://www.twitter.com/intent/tweet?hashtags=quotes&amp;";
+
+            let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+           twitterLink += quoteInApiFormat;
+
+           let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+           twitterLink += authorInApiFormat;
+           
+
+
+           document.getElementById("tweet-quote").href = twitterLink;
+            document.getElementById("text").innerText = randomQuoteData.quote;
+            document.getElementById("author").innerText = randomQuoteData.author;
+        }
+    </script>
+    
+</head>
+<body>
+    <wrapper id="quote-box">
+        <div id="text"></div>
+            <div id="author"></div>
+          <button class="btn btn-primary" id="new-quote" onClick="generateQuote();">New Quote</button>
+          <a href="#" id="tweet-quote" target="_blank" class="btn btn-danger">Tweet Quote</a>  
+        
+    </wrapper>
+    <script src= "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js" ></script>
+</body>
+</html>
